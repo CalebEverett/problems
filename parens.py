@@ -1,3 +1,17 @@
+# Given n pairs of parentheses, write a function to generate all combinations of
+# well-formed parentheses.
+
+# For example, given n = 3, a solution set is:
+
+# generate_solutions(n=3)
+# ((()))
+# (()())
+# (())()
+# ()(())
+# ()()()
+# =============================================================================
+
+
 def valid_parens(num=3):
     parens_list = [("(", 1, 0)]
     for level in range(num * 2 - 1):

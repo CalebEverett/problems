@@ -1,3 +1,26 @@
+# Write a function that takes a list of pairs of cats who are living together,
+# and two cat names X and Y, and returns a boolean indicating if X and Y are
+# living together.
+
+# Example,
+
+# cat_pairs = [
+#    ('Myu', 'Boxes'),
+#    ('Bounces', 'Felix'),
+#    ('Sam', 'Felix'),
+#    ('Boxes', 'Jax'),
+#    ('Quinn', 'Bounces'),
+# ]
+
+# cats_together(cat_pairs, 'Myu', 'Boxes') -> True
+# cats_together(cat_pairs, 'Bounces', 'Sam') -> True
+# cats_together(cat_pairs, 'Bounces', 'Boxes') -> False
+# cats_together(cat_pairs, 'Cat Not In The List', 'Felix') -> False
+
+# Q1. What is the time complexity of your function?
+# =============================================================================
+
+
 from collections import defaultdict
 from typing import List, Tuple
 import time
@@ -9,13 +32,6 @@ cat_pairs = [
     ("Boxes", "Jax"),
     ("Quinn", "Bounces"),
 ]
-
-# cats_together(cat_pairs, 'Myu', 'Boxes') -> True
-# cats_together(cat_pairs, 'Bounces', 'Sam') -> True
-# cats_together(cat_pairs, 'Bounces', 'Boxes') -> False
-# cats_together(cat_pairs, 'Cat Not In The List', 'Felix') -> False
-
-# Q1. What is the time complexity of your function?
 
 
 def cats_together(cat_pairs: List[Tuple[str, str]], cat0: str, cat1: str) -> bool:
