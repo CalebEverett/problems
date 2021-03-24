@@ -1,4 +1,4 @@
-from deck import Card, Rank, Suit
+from deck import Card, Deck, Rank, Suit
 import unittest
 
 
@@ -29,6 +29,14 @@ class TestDeck(unittest.TestCase):
                 self.assertGreater(
                     Card(rank_list[i], Suit(1)), Card(rank_list[i - 1], Suit(1))
                 )
+
+    def test_card_pop_slice(self):
+        """Cards returned by indexing are removed from deck."""
+
+        deck = Deck()
+        cards = deck[:3]
+        self.assertEqual(len(cards), 3)
+        self.assertEqual(len(deck), 49)
 
 
 if __name__ == "__main__":

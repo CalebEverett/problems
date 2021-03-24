@@ -30,11 +30,7 @@ class Card:
     suit: Suit
 
     def _is_valid_operand(self, other):
-        return (
-            other.__class__.__name__ == "Card"
-            and hasattr(other, "rank")
-            and hasattr(other, "suit")
-        )
+        return other.__class__ == self.__class__
 
     def __eq__(self, other):
         if not self._is_valid_operand(other):
@@ -59,7 +55,9 @@ class Card:
 
         symbol = symbols[self.suit.value - 1]
 
-        return f"{self.__class__.__name__}<{self.rank.name} of {self.suit.name}s {symbol})>"
+        return (
+            f"{self.__class__.__name__}<{self.rank.name} of {self.suit.name}s {symbol}>"
+        )
 
 
 class Deck:
@@ -98,7 +96,10 @@ class Deck:
         return self.cards.pop()
 
     def __getitem__(self, slice):
-        return self.cards[slice]
+        cards = self.cards[slice]
+        for card in cards:
+            self.cards.remove(card)
+        return cards
 
     def __repr__(self):
         cards_string = ("\n").join([f"\t{c.__repr__()}" for c in self.cards])
@@ -110,7 +111,11 @@ if __name__ == "__main__":
     print_n = 5
     deck = Deck()
 
-    print(f"Create deck with {len(deck)} cards.")
+    print(f"Createe deck with {len(deck)} cards.\n")
+
+    print("Printing card...")
+    card = deck.get_card("Ace", "Spade")
+    print(card, "\n")
 
     print("Printing cards from deck...")
     for card in deck:
@@ -143,7 +148,3 @@ if __name__ == "__main__":
     print("Printing deck ...")
     print(deck)
     print("\n")
-
-    print("Printing card...")
-    card = deck.get_card(deck.cards[0].rank.name, deck.cards[0].suit.name)
-    print(card)
