@@ -1,3 +1,18 @@
+# create a deck of 52 cards
+# ranks (2-10 and J,Q,K,A)
+# suits (spades, diamonds, clubs, hearts)
+
+# print all cards
+# get first/last card
+# get last 3 cards
+# get number of cards in deck
+# is 3 of diamonds in the deck
+# get random card
+
+# reverse deck
+# shuffle deck
+# =============================================================================
+
 from dataclasses import dataclass
 from enum import Enum
 from functools import total_ordering
