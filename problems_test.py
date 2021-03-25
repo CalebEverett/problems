@@ -1,4 +1,5 @@
 from deck import Card, Deck, Rank, Suit
+from parens import parens_from_strings, parens_from_partitions
 import unittest
 
 
@@ -37,6 +38,36 @@ class TestDeck(unittest.TestCase):
         cards = deck[:3]
         self.assertEqual(len(cards), 3)
         self.assertEqual(len(deck), 49)
+
+
+class TestParens(unittest.TestCase):
+    def test_strings(self):
+        """Binary string construction returns the correct number of valid combinations."""
+
+        correct = {1: 1, 2: 2, 3: 5, 4: 14}
+
+        for n in correct:
+            with self.subTest("Rank", n=n):
+                self.assertEqual(len(parens_from_strings(n)), correct[n])
+
+    def test_partitions(self):
+        """Permutations of partitions construction returns the correct number of valid
+        combinations."""
+
+        correct = {1: 1, 2: 2, 3: 5, 4: 14}
+
+        for n in correct:
+            with self.subTest("Rank", n=n):
+                self.assertEqual(len(parens_from_partitions(n)), correct[n])
+
+    def test_methods_equal(self):
+        """Both methods return the same result for larger values of n."""
+
+        for n in [6, 8, 10]:
+            with self.subTest("Rank", n=n):
+                self.assertEqual(
+                    len(parens_from_strings(n)), len(parens_from_partitions(n))
+                )
 
 
 if __name__ == "__main__":
